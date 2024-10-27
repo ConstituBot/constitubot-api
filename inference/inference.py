@@ -1,5 +1,4 @@
 import os
-import asyncio
 import nest_asyncio
 from dotenv import load_dotenv
 from langchain_community.document_loaders import WebBaseLoader
@@ -12,7 +11,6 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_huggingface import HuggingFaceEmbeddings
 
 nest_asyncio.apply()
-
 load_dotenv()
 
 class AnswerBot:
@@ -65,9 +63,5 @@ class AnswerBot:
 
 answer_bot = AnswerBot('https://normas.leg.br/?urn=urn:lex:br:federal:constituicao:1988-10-05;1988')
 
-async def main():
-    answer = await answer_bot.get_answer("O que a constituição fala sobre a utilização de organizações paramilitares por partidos?") 
-    print(answer)
-
-if __name__ == "__main__":
-    asyncio.run(main())
+async def get_answer_from_bot(prompt):
+    return await answer_bot.get_answer(prompt)
